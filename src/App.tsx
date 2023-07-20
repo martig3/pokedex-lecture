@@ -1,16 +1,29 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import Abilities from './components/abilities';
 
-interface Pokemon {
-  abilities: { ability: { name: string }; slot: string }[];
-  stats: { stat: { name: string }; base_stat: number }[];
+export interface Ability {
+  ability: { name: string };
+  slot: string;
 }
 
+export interface Stat {
+  stat: { name: string };
+  base_stat: number;
+}
+
+interface Pokemon {
+  abilities: Ability[];
+  stats: Stat[];
+}
 function App() {
   const [data, setData] = useState<Pokemon>({ abilities: [], stats: [] });
+  const pokemonName = 'ditto';
   useEffect(() => {
     const getData = async () => {
-      const response = await fetch('https://pokeapi.co/api/v2/pokemon/ditto');
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
+      );
       const json = (await response.json()) as Pokemon;
       setData(json);
     };
@@ -18,14 +31,8 @@ function App() {
   }, []);
   return (
     <>
-      <h2>Abilities</h2>
-      <ol>
-        {data.abilities.map((s) => (
-          <li key={s.ability.name}>
-            Name: {s.ability.name}, Slot: {s.slot}
-          </li>
-        ))}
-      </ol>
+      <h1 style={{ textTransform: 'uppercase' }}>{pokemonName}</h1>
+      <Abilities abilities={data.abilities} />
       <h2>Stats</h2>
       <ol>
         {data.stats.map((s) => (
