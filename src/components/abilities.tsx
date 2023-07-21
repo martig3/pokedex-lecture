@@ -7,7 +7,7 @@ export default function Abilities(props: { abilities: Ability[] }) {
       <ol>
         {props.abilities.map((s) => (
           <li key={s.ability.name}>
-            Name: {s.ability.name}, Slot: {s.slot}
+            {s.ability.name.toUpperCase()}, Slot: {s.slot}
           </li>
         ))}
       </ol>
