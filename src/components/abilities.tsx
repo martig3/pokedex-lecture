@@ -1,4 +1,4 @@
-import { Ability } from '../App';
+import { Ability } from '../pokemon';
 
 export default function Abilities(props: { abilities: Ability[] }) {
   return (

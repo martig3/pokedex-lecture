@@ -1,4 +1,4 @@
-import { Stat } from '../App';
+import { Stat } from '../pokemon';
 
 export default function Stats(props: { stats: Stat[] }) {
   return (
